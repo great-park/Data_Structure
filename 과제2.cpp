@@ -27,6 +27,7 @@ void list() {
 
 void add() {
 	
+	//끝에 추가 
 	Book* someone = (p+count);
 	printf("이름 :");
 	scanf("%s", someone->name);
@@ -55,22 +56,22 @@ void search() {
 		printf("\n검색 결과가 없습니다.\n");
 	}
 }
-void del() {
-	char d_name[20];
-	int fail = 1;
-	printf("삭제할 이름 : ");
-	scanf("%s", d_name);
-
-	for (int i = 0; i < count; i++) {
-		if (strcmp(d_name, (p + i)->name) == 0) {
-			free(p + i); ///?????
-			fail = 0;
-		}
-	}
-	if (fail == 1) {
-		printf("\n검색 결과가 없습니다.\n");
-	}
-}
+//void del() {
+//	char d_name[20];
+//	int fail = 1;
+//	printf("삭제할 이름 : ");
+//	scanf("%s", d_name);
+//
+//	for (int i = 0; i < count; i++) {
+//		if (strcmp(d_name, (p + i)->name) == 0) {
+//			//?????//  
+//			fail = 0;
+//		}
+//	}
+//	if (fail == 1) {
+//		printf("\n검색 결과가 없습니다.\n");
+//	}
+//}
 
 int main() {
 	int i = 0;

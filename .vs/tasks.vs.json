@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-구조체 활용1",
+      "appliesTo": "구조체 활용1.cpp",
+      "type": "launch"
+    }
+  ]
+}

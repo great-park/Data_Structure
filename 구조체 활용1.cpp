@@ -56,22 +56,29 @@ void search() {
 		printf("\n검색 결과가 없습니다.\n");
 	}
 }
-//void del() {
-//	char d_name[20];
-//	int fail = 1;
-//	printf("삭제할 이름 : ");
-//	scanf("%s", d_name);
-//
-//	for (int i = 0; i < count; i++) {
-//		if (strcmp(d_name, (p + i)->name) == 0) {
-//			//?????//  
-//			fail = 0;
-//		}
-//	}
-//	if (fail == 1) {
-//		printf("\n검색 결과가 없습니다.\n");
-//	}
-//}
+void del() {
+	char d_name[20];
+	int fail = 1;
+	printf("삭제할 이름 : ");
+	scanf("%s", d_name);
+	int delete_index;
+
+	for (int i = 0; i < count; i++) {
+		if (strcmp(d_name, (p + i)->name) == 0) {
+			delete_index = i;
+			fail = 0; break;
+		}
+	}
+	if (fail == 1) {
+		printf("\n검색 결과가 없습니다.\n");
+	}else{
+		count--;
+		for(int i = delete_index;i<count;i++){
+			(p+i)->name = (p+i+1)->name;
+		}
+		
+	}
+}
 
 int main() {
 	int i = 0;

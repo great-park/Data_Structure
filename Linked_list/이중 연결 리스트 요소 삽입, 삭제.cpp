@@ -175,5 +175,50 @@ node* insert_end(node* start)
 	return start;
 }
 
+node* insert_before(node* start)
+{
+	node* new_node, * ptr;
+	int num, val;
+	printf("\n enter the data : ");
+	scanf("%d", &num);
+	printf("enter the value before which the data has to be inserted");
+	scnaf("%d", &val);
+	new_node = (node*)malloc(sizeof(node));
+	new_node->data = num;
+	//삽입위치 찾아가기
+	ptr = start;
+	while (ptr->data != val)
+		ptr->next = ptr; // val이 담긴 node 위치로 이동
+	new_node->next = ptr; // new_node에서 한 방향 연결 
+	new_node->prev = ptr->prev; // new_node에서 나머지 방향 연결, 현 상황 :  a <- new_node -> b
+	ptr->prev->next = new_node;  // a-> new_node 추가
+	ptr->prev = new_node; // new_node <-b 추가  doubly linked list 노드 추가 완료.
+	return start;
+}
 
+node* insert_after(node* start)
+{
+	node* new_node, * ptr;
+	int num, val;
+	printf("\n enter the data : ");
+	scanf("%d", &num);
+	printf("\n Enter the value after which the data has to be inserted");
+	scanf("%d", &val);
+	new_node = (node*)malloc(sizeof(node));
+	new_node->data = num;
+	//val위치로
+	ptr = start;
+	while (ptr->data != val)
+		ptr = ptr->next;
+	new_node->prev = ptr; // a <- new_node
+	new_node->next = ptr->next; // a <- new_node -> b
+	ptr->next->prev = new_node; // new_node <- b 추가
+	ptr->next = new_node; // a -> new_node 추가  doubly linked list 노드 추가 완료
+	return start;
+}
+
+node* delete_beg(node* start) 
+{
+
+}
 

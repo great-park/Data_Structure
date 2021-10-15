@@ -10,8 +10,8 @@ typedef struct node
 } node;
 
 node* start = NULL;
-node* create_ll(struct node *);
-node* display(struct node *);
+node* create_ll(struct node*);
+node* display(struct node*);
 
 node* insert_beg(struct node*);
 node* insert_end(struct node*);
@@ -27,7 +27,7 @@ node* delete_list(struct node*);
 int main()
 {
 	int option;
-	
+
 	do
 	{
 		printf("\n\n *****Main Menu*****");
@@ -65,7 +65,7 @@ int main()
 			start = insert_before(start);
 			break;
 		case 6:
-			start = insert_before(start);
+			start = insert_after(start);
 			break;
 		case 7:
 			start = delete_beg(start);
@@ -84,14 +84,14 @@ int main()
 			printf("doubly linked list 삭제");
 			break;
 		}
-	} while (optiom != 12);
+	} while (option != 12);
 	getch();
 	return 0;
 }
 
 node* create_ll(struct node* start)
 {
-	node *new_node, * ptr;
+	node* new_node, * ptr;
 	int num;
 	printf("\n -1 입력 시 종료");
 	printf("\n 연결리스트 요소 입력 : ");
@@ -121,14 +121,14 @@ node* create_ll(struct node* start)
 			new_node->prev = ptr; // 남은 방향도 연결
 			new_node->next = NULL; // ll의 한 쪽 끝
 		}
-		printf("\n enter the data : ");
+		printf("\n 연결리스트 요소 입력 : ");
 		scanf("%d", &num); // 반복. -1 입력시 종료
 	}
 	return start;  // start를 리턴하는 이유? -> 이후 삽입이나 삭제 등 작업을 이어가기 위해서.
 				  // start는 처음 만든 node를 가리킨다.
 }
 
-node* distplay(node* start)
+node* display(node* start)
 {
 	node* ptr;
 	ptr = start;
@@ -144,7 +144,7 @@ node* insert_beg(node* start)
 {
 	node* new_node;
 	int num;
-	printf("\n enter the data : ");
+	printf("\n 연결리스트 요소 입력 : ");
 	scanf("%d", &num);
 	new_node = (node*)malloc(sizeof(node));
 	new_node->data = num;
@@ -154,14 +154,14 @@ node* insert_beg(node* start)
 	new_node->next = start;
 	new_node->prev = NULL;
 	start = new_node; //방금 만든 node가 첫 노드가 됨 
-	return start; 
+	return start;
 }
 
 node* insert_end(node* start)
 {
 	node* ptr, * new_node;
 	int num;
-	printf("\n enter the data : ");
+	printf("\n 연결리스트 요소 입력 : ");
 	scanf("%d", &num);
 	new_node = (node*)malloc(sizeof(node));
 	new_node->data = num;
@@ -179,16 +179,17 @@ node* insert_before(node* start)
 {
 	node* new_node, * ptr;
 	int num, val;
-	printf("\n enter the data : ");
+	printf("\n 연결리스트 요소 입력 : ");
 	scanf("%d", &num);
-	printf("enter the value before which the data has to be inserted");
-	scnaf("%d", &val);
+	printf("삽입할 위치 앞 노드의 값 입력 : ");
+	scanf("%d", &val);
 	new_node = (node*)malloc(sizeof(node));
 	new_node->data = num;
+
 	//삽입위치 찾아가기
 	ptr = start;
 	while (ptr->data != val)
-		ptr->next = ptr; // val이 담긴 node 위치로 이동
+		ptr = ptr->next; // val이 담긴 node 위치로 이동
 	new_node->next = ptr; // new_node에서 한 방향 연결 
 	new_node->prev = ptr->prev; // new_node에서 나머지 방향 연결, 현 상황 :  a <- new_node -> b
 	ptr->prev->next = new_node;  // a-> new_node 추가
@@ -200,9 +201,9 @@ node* insert_after(node* start)
 {
 	node* new_node, * ptr;
 	int num, val;
-	printf("\n enter the data : ");
+	printf("\n 연결리스트 요소 입력 : ");
 	scanf("%d", &num);
-	printf("\n Enter the value after which the data has to be inserted");
+	printf("\n 삽일할 위치의 이전 노드 값 입력");
 	scanf("%d", &val);
 	new_node = (node*)malloc(sizeof(node));
 	new_node->data = num;
@@ -217,8 +218,39 @@ node* insert_after(node* start)
 	return start;
 }
 
-node* delete_beg(node* start) 
+node* delete_beg(node* start)
 {
-
+	node* ptr;
+	ptr = start;
+	start = start->next; //start 위치 다음으로 옮기기
+	start->prev = NULL;
+	free(ptr);
+	return start;
 }
 
+node* delete_end(node* start)
+{
+	node* ptr;
+	ptr = start;
+	while (ptr->next != NULL)
+		ptr = ptr->next;
+	ptr->prev->next = NULL; // 마지막 노드로의 연결 끊기
+	free(ptr);
+	return start;
+}
+
+node* delete_after(node* start)
+{
+	node* ptr, * temp;
+	int val;
+	printf("\n 삭제할 노드의 다음 노드의 값을 입력");
+	scanf("%d", &val);
+	ptr = start;
+	while (ptr->data != val)
+		ptr = ptr->next; // 작업 후 ptr은 val을 가지는 노드를 가리킴
+	temp = ptr->next; // ptr -> temp 연결
+	ptr->next = temp->next;
+	temp->next->prev = ptr;
+	free(temp);
+	return start;
+}

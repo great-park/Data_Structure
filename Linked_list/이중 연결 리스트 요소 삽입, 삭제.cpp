@@ -254,3 +254,31 @@ node* delete_after(node* start)
 	free(temp);
 	return start;
 }
+
+node* delete_before(node* start)
+{
+	node* ptr, * temp;
+	int val;
+	printf("\n 삭제할 위치의 이전 노드 값 입력");
+	scanf("%d", &val);
+	ptr = start;
+	while (ptr->data != val)
+		ptr = ptr->next;  //ptr이 val 위치로
+	temp = ptr->prev;
+	if (temp == start)
+		start = delete_beg(start); //delete_beg 함수 호출해서 맨 앞 노드 삭제하고 start를 위치 조정
+	else
+	{
+		ptr->prev = temp->prev; // ??
+		temp->prev->next = ptr;
+	}
+	free(temp);
+	return start;
+}
+
+node* delete_list(node* start)
+{
+	while (start != NULL)
+		start = delete_beg(start);
+	return start;
+}

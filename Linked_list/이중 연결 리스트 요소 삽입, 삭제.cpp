@@ -243,14 +243,15 @@ node* delete_after(node* start)
 {
 	node* ptr, * temp;
 	int val;
-	printf("\n 삭제할 노드의 다음 노드의 값을 입력");
+	printf("\n 삭제할 노드의 이전 노드의 값을 입력");
 	scanf("%d", &val);
 	ptr = start;
 	while (ptr->data != val)
 		ptr = ptr->next; // 작업 후 ptr은 val을 가지는 노드를 가리킴
-	temp = ptr->next; // ptr -> temp 연결
-	ptr->next = temp->next;
+	temp = ptr->next; //temp은 ptr의 다음 노드를 가리킴
 	temp->next->prev = ptr;
+	ptr->next = temp->next; // temp->next는 ptr의 두 칸 앞의 노드. 이 노드를 ptr의 next로 연결. 즉 temp를 건너뛰고 두 노드끼리 한 방향 연결.
+	 // temp->next는 ptr의 두 칸 앞의 노드. 이 노드의 next로 ptr을 연결. 즉 temp를 건너뛰고 두 노드끼리 나머지 한 방향도 연결.
 	free(temp);
 	return start;
 }
@@ -259,7 +260,7 @@ node* delete_before(node* start)
 {
 	node* ptr, * temp;
 	int val;
-	printf("\n 삭제할 위치의 이전 노드 값 입력");
+	printf("\n 삭제할 위치의 다음 노드 값 입력");
 	scanf("%d", &val);
 	ptr = start;
 	while (ptr->data != val)
@@ -269,8 +270,9 @@ node* delete_before(node* start)
 		start = delete_beg(start); //delete_beg 함수 호출해서 맨 앞 노드 삭제하고 start를 위치 조정
 	else
 	{
-		ptr->prev = temp->prev; // ??
 		temp->prev->next = ptr;
+		ptr->prev = temp->prev; // temp = ptr->prev이므로 temp->prev는 ptr의 두 칸 뒤. 따라서 이 코드는 temp을 건너뛰고 두 노드끼리 한 방향 연결함
+		 // temp->prev는 ptr 두 칸 뒤 node. 이 node의 ->next에 ptr 연결. temp을 건너뛰고 나머지 한 방향도 연결 완료
 	}
 	free(temp);
 	return start;

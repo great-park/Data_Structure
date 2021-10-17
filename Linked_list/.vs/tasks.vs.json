@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-1017",
+      "appliesTo": "1017.cpp",
+      "type": "launch"
+    }
+  ]
+}

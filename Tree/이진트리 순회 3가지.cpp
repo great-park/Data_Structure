@@ -37,30 +37,28 @@ int main()
 	Node* root = (Node*)malloc(sizeof(Node));
 	root->value = 3;
 
-	Node* l = root->left;
-	l = (Node*)malloc(sizeof(Node));
-	l->value = 2;
-	l->left = NULL;
-	l->right = NULL;
+	root->left = (Node*)malloc(sizeof(Node));
+	root->left->value = 2;
+	root->left->left = NULL;
+	root->left->right = NULL;
 
 
-	Node* r = root->right;
-	r = (Node*)malloc(sizeof(Node));
-	r->value = 5;
+	root->right = (Node*)malloc(sizeof(Node));
+	root->right->value = 5;
 
-	r->left = (Node*)malloc(sizeof(Node));
-	r->left->value = 8;
-	r->left->right = NULL;
+	root->right->left = (Node*)malloc(sizeof(Node));
+	root->right->left->value = 8;
+	root->right->left->right = NULL;
 
-	r->left->left = (Node*)malloc(sizeof(Node));
-	r->left->left->value = 1;
-	r->left->left->left = NULL;
-	r->left->left->right = NULL;
+	root->right->left->left = (Node*)malloc(sizeof(Node));
+	root->right->left->left->value = 1;
+	root->right->left->left->left = NULL;
+	root->right->left->left->right = NULL;
 
-	r->right = (Node*)malloc(sizeof(Node));
-	r->right->value = 4;
-	r->right->left = NULL;
-	r->right ->right = NULL;
+	root->right->right = (Node*)malloc(sizeof(Node));
+	root->right->right->value = 4;
+	root->right->right->left = NULL;
+	root->right->right ->right = NULL;
 
 	preorder(root);
 	printf("\n");

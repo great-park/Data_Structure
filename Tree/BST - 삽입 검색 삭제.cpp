@@ -52,7 +52,7 @@ void insert_node(Node* n, Node* newNode)
 	}
 }
 
-Node* remove_node(Node* target) // n Node를 지우는 함수
+void remove_node(Node* target) // n Node를 지우는 함수
 {
 	// 1. 리프노드를 삭제(자식 == 0)				
 	// 2. 한 쪽만 자식이 있는 내부노드(자식 == 1)를 삭제
@@ -78,6 +78,8 @@ Node* remove_node(Node* target) // n Node를 지우는 함수
 		}
 
 		remove_node(left_sided); // case 1, 2 처리
+
+		//me와 left_sided를 교환
 		if (target->parent->left == target) {
 			target->parent->left = left_sided;
 		}
@@ -116,4 +118,10 @@ Node* remove_node(Node* target) // n Node를 지우는 함수
 Node* remove_value(Node* n, int value)  // value를 지우는 함수
 {
 	Node* target = search_value(root, value);
+	if (target == NULL) {
+		printf("값이 없어서 삭제 불가");
+	}
+
+	remove_node(target);
+	free(target);
 }

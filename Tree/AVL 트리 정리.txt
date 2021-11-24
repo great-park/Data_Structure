@@ -1,0 +1,30 @@
+- AVL 트리의 특징
+a. 어떤 노드라도 왼쪽 서브트리와 오른쪽 서브트리의 높이 차이가 1보다 크지 않다. (최대 높이 차이는 1 이다.)
+b. 만약 특정 노드를 추가하거나 삭제했을 때 왼쪽 서브트리와 오른쪽 서브트리의 높이 차이가 1보다 커지는 노드가 생긴다면, re-balancing을 통해 a 규칙에 어긋나지 않도록 한다.
+c. 균형 트리(balanced tree)이다. 
+=> 균형 트리는 아래 세 가지 조건을 모두 만족하는 트리이다.
+   i. 왼쪽과 오른쪽 서브트리의 높이 차이가 최대 1이다.  => {-1, 0 ,1}
+  ii. 왼쪽 서브트리가 균형 트리이다.
+ iii. 오른쪽 서브트리가 균형 트리이다.
+d. 각 노드는 균형값(균형인수, balance factor)을 가지고 있으며 이 균형값은 오른쪽 서브트리의 높이에서 왼쪽 서브트리의 높이를 뺀 값이다. 이 값은 항상 {-1, 0, 1 } 셋 중 하나의 값이어야 한다.
+e. 균형값(균형인수, balance factor)이 마이너스(-)이면 left-heavy, 플러스(+) 값을 가지면 right-heavy 라고 한다.
+f. pivot 노드는 새로운 노드가 추가되었을 때 균형값에 변동이 발생하여 unbalanced 된 노드들 중 신규노드와 가장 가까운 노드를 말한다. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Rotation의 종류 - 4가지
+왼왼 (Left - Left) : 부모 노드와 pivot 노드의 균형값이 모두 left-heavy인 경우
+=> Single Right rotation (오른쪽으로 1회전)
+오오 (Right - Right) : 부모 노드와 pivot 노드의 균형값이 모두 right-heavy인 경우
+=> Single Left rotation (왼쪽으로 1회전)
+왼오 (Left - Right) : 부모 노드와 pivot 노드의 균형값이 각각 right-heavy, left-heavy, 인 경우
+=> Double Left-Right rotation (왼쪽으로 한번, 오른쪽으로 한번 총 두 번의 회전)
+오왼(Right - Left) : 부모 노드와 pivot 노드의 균형값이 각각 left-heavy, right-heavy인 경우
+=> Double Right-Left rotation (오른쪽으로 한번, 왼쪽으로 한번 총 두 번의 회전)
+ 
+ 

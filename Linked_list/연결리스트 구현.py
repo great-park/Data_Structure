@@ -87,7 +87,11 @@ my_list.append(2)
 my_list.append(3)
 my_list.append(4)
 my_list.append(5)
-
 my_list.print_all()
+
+print("2번 인덱스 삭제")
+my_list.delete_node(2)
+
+
 "or"
 print(my_list)

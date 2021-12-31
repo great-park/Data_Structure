@@ -28,12 +28,19 @@ class LinkedList:
         return id
 
     def get_node(self, id):
+        iterator = self.head
+        for _ in range(id):
+            iterator = iterator.next
+        return iterator
+    """ 
+    def get_node(self, id):
         cnt = 0
         cur = self.head
         while cnt < id:
             cnt += 1
             cur = cur.next
         return cur
+    """
 
     def insert_node(self, index, data):
         newNode = Node(data)

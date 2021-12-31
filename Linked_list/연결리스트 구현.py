@@ -48,17 +48,18 @@ class LinkedList:
             newNode.next = self.head
             self.head = newNode
             return
-        cur = self.get_node(index - 1)
-        temp = cur.next
-        cur.next = newNode
+        previous_node = self.get_node(index - 1)
+        temp = previous_node.next
+        previous_node.next = newNode
         newNode.next = temp
 
     def delete_node(self, index):
-        if index == 0:
-            self.head = self.head.next
-            return
-        cur = self.get_node(index-1)
-        cur.next = cur.next.next
+        previous_node = self.get_node(index-1)
+
+        if previous_node.next.next == None:
+            previous_node.next = None
+        else:
+            previous_node.next = previous_node.next.next
 
     def print_all(self):
         iterator = self.head

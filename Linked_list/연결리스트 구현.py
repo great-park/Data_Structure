@@ -59,6 +59,17 @@ class LinkedList:
             print(iterator.data)
             iterator = iterator.next
 
+    """__str__ 메소드, 생성한 인스턴스를 출력시 호출"""
+
+    def __str__(self):
+        res_str = "|"
+        iterator = self.head
+
+        while iterator is not None:
+            res_str += f" {iterator.data} |"
+            iterator = iterator.next
+        return res_str
+
 
 # test
 my_list = LinkedList()
@@ -70,3 +81,5 @@ my_list.append(4)
 my_list.append(5)
 
 my_list.print_all()
+"or"
+print(my_list)

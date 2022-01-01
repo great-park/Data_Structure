@@ -25,7 +25,7 @@ class BST(Node):  # 상속
 
     def find_value(self, root, key):
         if root is None or root.data == key:
-            return root is not None
+            return root
         elif key < root.data:
             return self.find_value(root.left, key)
         else:

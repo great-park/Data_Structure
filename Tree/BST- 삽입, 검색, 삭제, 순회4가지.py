@@ -1,4 +1,4 @@
-class Node:
+class Node:  # 완전 이진트리가 보장되지 않으므로 리스트, 배열 X
     def __init__(self, data):
         self.data = data
         self.left = None

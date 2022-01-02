@@ -29,13 +29,10 @@ class Stack:
             return False
 
 # 2. singly linked list로 구현
-
-
 class Node:
     def __init__(self, data):
         self.data = data
         self.bottom = None
-
 
 class Stack2():
     def __init__(self):

@@ -10,9 +10,6 @@ class HashTable:
             self.capacity)]  # _table은 해시 테이블에서 사용하는 리스트, 각 인덱스에 연결리스트 저장
 
     def hash_function(self, key):
-        """
-        주어진 key에 나누기 방법을 사용해서 해시된 값을 리턴하는 메소드
-        """
         return hash(key) % self.capacity
 
     def get_linked_list_for_key(self, key):
@@ -27,11 +24,6 @@ class HashTable:
         return self.get_node(key).value
 
     def insert(self, key, value):
-        """
-        새로운 key - value 쌍을 삽입시켜주는 메소드
-        이미 해당 key에 저장된 데이터가 있으면 해당 key에 해당하는 데이터를 바꿔준다
-        """
-
         existing_node = self.get_node(key)  # 이미 저장된 key인지 확인한다
 
         if existing_node is not None:
@@ -39,6 +31,11 @@ class HashTable:
         else:
             linked_list = self.get_linked_list_for_key(key)
             linked_list.append(key, value)
+
+    def delete_by_key(self, key):
+        node_to_delete = self.get_node(key)
+        LinkedList = self.get_linked_list_for_key(key)
+        LinkedList.delete(node_to_delete)
 
     def __str__(self):
         """해시 테이블 문자열 메소드"""
@@ -66,8 +63,18 @@ print(test_scores.get_value("a"))
 print(test_scores.get_value("b"))
 print(test_scores.get_value("c"))
 
+print("삽입")
 test_scores.insert("a", 10)
 test_scores.insert("b", 20)
 test_scores.insert("c", 30)
+
+print(test_scores)
+
+print("삭제")
+test_scores.delete_by_key("a")
+test_scores.delete_by_key("c")
+test_scores.delete_by_key("d")
+test_scores.delete_by_key("f")
+test_scores.delete_by_key("g")
 
 print(test_scores)

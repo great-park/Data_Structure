@@ -32,24 +32,11 @@ class Queue():
         else:
             return False
 
-
-que = Queue()
-que.push(1)
-que.push(2)
-que.push(3)
-print(que.pop())
-print(que.pop())
-print(que.pop())
-
 # 2. singly linked list로 구현
-print("연결리스트로 구현")
-
-
 class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
-
 
 class Queue2:
     def __init__(self):
@@ -87,12 +74,3 @@ class Queue2:
         else:
             value = self.head.data
         return value
-
-
-que2 = Queue2()
-que2.push(1)
-que2.push(2)
-que2.push(3)
-print(que2.pop())
-print(que2.pop())
-print(que2.pop())

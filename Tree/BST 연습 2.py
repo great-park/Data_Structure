@@ -125,10 +125,11 @@ class BinarySearchTree:
             successor = self.find_min(node_to_delete.right_child)
             node_to_delete.data = successor.data
 
-            if successor is successor.parent_node.left_child:
-                successor.parent_node.left_child = successor.right_child
-            else:
-                successor.parent_node.right_child = successor.right_child
+            # successor 노드 트리에서 삭제
+            if successor is successor.parent.left_child:  # successor 노드가 어떤 부모 노드의 왼쪽 자식일 때
+                successor.parent.left_child = successor.right_child
+            else:  # successor 노드가 삭제하려는 노드의 바로 오른쪽 자식일 때
+                successor.parent.right_child = successor.right_child
 
 
 bst = BinarySearchTree()

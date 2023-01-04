@@ -27,3 +27,6 @@ queue.put((2, "2등"))
 print(queue.get()[1])
 print(queue.get()[1])
 print(queue.get()[1])
+
+#Max우선순위큐
+queue2 = MaxPriorityQueue()
